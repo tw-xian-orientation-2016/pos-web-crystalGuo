@@ -72,3 +72,16 @@ function getTotalPrice() {
   return totalPrice;
 
 }
+
+
+function generateReceipt() {
+
+  var cartItems = JSON.parse(localStorage.getItem('cartItems'));
+  var list = JSON.parse(localStorage.getItem('list'));
+  var date = new Date();
+  var totalPrice = getTotalPrice();
+  var receipt = { 'cartItems': cartItems, 'totalPrice':totalPrice, 'date':date };
+
+  localStorage.setItem('receipt', JSON.stringify(receipt));
+  localStorage.removeItem('cartItems');
+}
