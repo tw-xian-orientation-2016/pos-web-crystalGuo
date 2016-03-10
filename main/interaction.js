@@ -2,20 +2,31 @@ $(document).ready(function() {
 
   setCartTypes();
   setCartItemCount();
+  jumpToCart();
   jumpToReceipt();
 });
 
 function setCartTypes() {
   var cartItems = JSON.parse(localStorage.getItem('cartItems'));
 
-  $('.badge').text(cartItems.length);
+  if (cartItems) {
+    $('.badge').text(cartItems.length);
+  }
 
   $('input[name="addButton"]').click(function() {
     var barcode = $(this).data('id');
     addToCartItems(barcode);
     var cartItems = JSON.parse(localStorage.getItem('cartItems'));
 
-    $('.badge').text(cartItems.length);
+    if (cartItems) {
+      $('.badge').text(cartItems.length);
+    }
+  });
+}
+
+function jumpToCart() {
+  $('#cartJumping').click(function() {
+    location.href = '../page/cart.html';
   });
 }
 
