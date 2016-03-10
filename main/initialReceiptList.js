@@ -16,7 +16,7 @@ function createTable(receiptList) {
 
         var td = $('<td>' + receiptList[i].date.toString() + '</td>');
         td.appendTo(tr);
-        td = $('<td>' + receiptList[i].totalPrice.toFixed(2) + '/' + list[i].unit + '</td>');
+        td = $('<td>' + receiptList[i].totalPrice.toFixed(2)  + '</td>');
         td.appendTo(tr);
         td = $('<td>' + '<input type = "button" name = "go" data-date = "' + receiptList[i].date +
         '" value = "goToReceipt"/>' + "</td>");
