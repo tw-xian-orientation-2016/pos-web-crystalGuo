@@ -2,6 +2,7 @@ $(document).ready(function() {
 
   setCartTypes();
   setCartItemCount();
+  jumpToReceipt();
 });
 
 function setCartTypes() {
@@ -24,5 +25,12 @@ function setCartItemCount() {
     var barcode = $(this).data('id');
     var cartItems = setCartItems(barcode, count);
     $("input[placeholder]").attr("placeholder", getTotalPrice(cartItems).toFixed(2));
+  });
+}
+
+function jumpToReceipt() {
+  $('#checkout').click(function() {
+    generateReceipt();
+    location.href = '../page/receipt.html'
   });
 }
