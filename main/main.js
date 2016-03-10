@@ -32,3 +32,43 @@ function setCartItems(barcode, cartItems) {
 
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
 }
+
+function setCartItems(barcode, count) {
+
+  var cartItems = JSON.parse(localStorage.getItem('cartItems'));
+
+  for (var i = 0; i < cartItems.length; i++) {
+    if (cartItems[i].barcode === barcode) {
+      cartItems[i].count = count;
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+      return cartItems;
+    }
+  }
+}
+
+function getItem(barcode) {
+
+  var list = loadAllItems();
+
+  for (var i = 0; i < list.length; i++) {
+    if (barcode === list[i].barcode) {
+      return list[i];
+    }
+  }
+
+  return null;
+}
+
+function getTotalPrice() {
+
+  var cartItems = JSON.parse(localStorage.getItem('cartItems'));
+  var totalPrice = 0.00;
+
+  for (var i = 0; i < cartItems.length; i++) {
+    var item = getItem(cartItems[i].barcode);
+    totalPrice += item.price * cartItems[i].count;
+  }
+
+  return totalPrice;
+
+}
