@@ -82,6 +82,19 @@ function generateReceipt() {
   var totalPrice = getTotalPrice();
   var receipt = { 'cartItems': cartItems, 'totalPrice':totalPrice, 'date':date };
 
-  localStorage.setItem('receipt', JSON.stringify(receipt));
   localStorage.removeItem('cartItems');
+
+  return receipt;
+}
+
+function generateReceiptList() {
+  var receiptList = JSON.parse(localStorage.getItem('receiptList'));
+  var receipt = generateReceipt();
+
+  if (!receiptList) {
+    var receiptList = [];
+  }
+
+  receiptList.push(receipt);
+  localStorage.setItem('receiptList', receiptList);
 }
