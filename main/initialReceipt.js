@@ -2,10 +2,12 @@ $(document).ready(initialReceipt);
 
 function initialReceipt() {
 
-  var cartItems = JSON.parse(localStorage.getItem('cartItems'));
+  var receiptList = JSON.parse(localStorage.getItem('receiptList'));
+  var lastIndex = receiptList.length -1;
+  var receipt = receiptList[lastIndex];
 
-  createTable(cartItems);
-  $("input[placeholder]").attr("placeholder", getTotalPrice(cartItems).toFixed(2));
+  createTable(receipt.cartItems);
+  $("input[placeholder]").attr("placeholder", receipt.totalPrice.toFixed(2));
 }
 
 function createTable(cartItems) {
