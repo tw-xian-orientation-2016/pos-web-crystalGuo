@@ -30,7 +30,7 @@ function setCartItemCount() {
 
 function jumpToReceipt() {
   $('#checkout').click(function() {
-    generateReceipt();
+    generateReceiptList();
     location.href = '../page/receipt.html'
   });
 }
