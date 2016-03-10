@@ -33,7 +33,7 @@ function setCartItems(barcode, cartItems) {
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
 }
 
-function setCartItems(barcode, count) {
+function getCartItems(barcode, count) {
 
   var cartItems = JSON.parse(localStorage.getItem('cartItems'));
 
