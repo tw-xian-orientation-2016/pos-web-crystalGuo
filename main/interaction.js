@@ -34,7 +34,7 @@ function setCartItemCount() {
   $('input[name="countText"]').change(function() {
     var count = $(this).val();
     var barcode = $(this).data('id');
-    var cartItems = setCartItems(barcode, count);
+    var cartItems = getCartItems(barcode, count);
     $("input[placeholder]").attr("placeholder", getTotalPrice(cartItems).toFixed(2));
   });
 }
@@ -43,5 +43,9 @@ function jumpToReceipt() {
   $('#checkout').click(function() {
     generateReceiptList();
     location.href = '../page/receipt.html'
+  });
+
+  $('input[name = "go"]').click(function() {
+    location.href = '../page/receipt.html';
   });
 }
