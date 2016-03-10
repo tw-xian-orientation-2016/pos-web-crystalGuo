@@ -76,25 +76,28 @@ function getTotalPrice() {
 
 function generateReceipt() {
 
-  var cartItems = JSON.parse(localStorage.getItem('cartItems'));
+  var cartItemsInStorage = JSON.parse(localStorage.getItem('cartItems'));
+  var cartItems = cartItemsInStorage;
   var list = JSON.parse(localStorage.getItem('list'));
   var date = new Date();
   var totalPrice = getTotalPrice();
   var receipt = { 'cartItems': cartItems, 'totalPrice':totalPrice, 'date':date };
 
-  localStorage.removeItem('cartItems');
+  localStorage.clear('cartItems');
 
   return receipt;
 }
 
 function generateReceiptList() {
-  var receiptList = JSON.parse(localStorage.getItem('receiptList'));
+  var receiptList = localStorage.getItem('receiptList');
   var receipt = generateReceipt();
 
-  if (!receiptList) {
+  if (receiptList === null) {
     var receiptList = [];
+  } else {
+    receiptList = JSON.parse(receiptList);
   }
 
   receiptList.push(receipt);
-  localStorage.setItem('receiptList', receiptList);
+  localStorage.setItem('receiptList', JSON.stringify(receiptList));
 }
