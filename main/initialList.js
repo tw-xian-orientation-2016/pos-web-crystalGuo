@@ -4,9 +4,6 @@ function initialList() {
 
   if (!localStorage.getItem('list')) {
     localStorage.setItem('list', JSON.stringify(loadAllItems()));
-    // localStorage.setItem('cartItems', JSON.stringify([]));
-    // localStorage.setItem('receipt', JSON.stringify([]));
-    // localStorage.setItem('receiptList', JSON.stringify([]));
   }
 
   var list = JSON.parse(localStorage.getItem('list'));
