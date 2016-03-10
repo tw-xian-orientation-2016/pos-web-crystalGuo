@@ -2,11 +2,14 @@ $(document).ready(initialList);
 
 function initialList() {
 
-  if (localStorage.getItem("list") === null) {
-    localStorage.setItem("list", JSON.stringify(loadAllItems()));
+  if (!localStorage.getItem('list')) {
+    localStorage.setItem('list', JSON.stringify(loadAllItems()));
+    // localStorage.setItem('cartItems', JSON.stringify([]));
+    // localStorage.setItem('receipt', JSON.stringify([]));
+    // localStorage.setItem('receiptList', JSON.stringify([]));
   }
 
-  var list = JSON.parse(localStorage.getItem("list"));
+  var list = JSON.parse(localStorage.getItem('list'));
 
   createTable(list);
 }
@@ -15,14 +18,15 @@ function createTable(list) {
 
   for (var i = 0; i < list.length; i++)
      {
-        var tr=$("<tr></tr>");
-        tr.appendTo($("#listTable"));
+        var tr=$('<tr></tr>');
+        tr.appendTo($('table'));
 
-        var td = $("<td>" + list[i].name + "</td>");
+        var td = $('<td>' + list[i].name + '</td>');
         td.appendTo(tr);
-        td = $("<td>" + list[i].price.toFixed(2) + "/" + list[i].unit + "</td>");
+        td = $('<td>' + list[i].price.toFixed(2) + '/' + list[i].unit + '</td>');
         td.appendTo(tr);
-        td = $("<td>" + "<input type = 'button', name = 'addButton', data-id = list[i].barcode, value = 'addToCart'/>" + "</td>");
+        td = $('<td>' + '<input type = "button" name = "addButton" data-id = "' + list[i].barcode +
+        '" value = "addToCart"/>' + "</td>");
         td.appendTo(tr);
      }
 }
